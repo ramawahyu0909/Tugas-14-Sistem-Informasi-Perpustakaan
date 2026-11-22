@@ -1,0 +1,39 @@
+
+@extends('layouts.app')
+
+@section('title', 'Tambah Kategori')
+
+@section('content')
+    <h2>Tambah Kategori Buku</h2>
+
+    @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('categories.store') }}" method="POST">
+        @csrf
+
+        <div>
+            <label>Nama Kategori</label>
+            <input
+                type="text"
+                name="name"
+                value="{{ old('name') }}"
+                placeholder="Masukkan nama kategori"
+                required
+            >
+        </div>
+
+        <br>
+
+        <button type="submit">Simpan Kategori</button>
+
+        <a href="{{ route('categories.index') }}">Kembali</a>
+    </form>
+@endsection
